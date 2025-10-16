@@ -309,7 +309,7 @@ model = Word2Vec(
 ### **Negative Sampling:**
 - **Nhỏ** (5-10): Huấn luyện nhanh
 - **Lớn** (15-25): Chất lượng tốt hơn, huấn luyện chậm hơn
-- **Công thức**: $k = \text{min}(20, \text{max}(5, \frac{\text{vocab\_size}}{10000}))$
+- **Công thức**: $k = \text{min}(20, \text{max}(5, \frac{\text{vocab\_\_size}}{10000}))$
 
 ### **Tốc độ học (Learning Rate):**
 - **Ban đầu**: 0.025 (mặc định của Gensim)
