@@ -1,0 +1,22 @@
+# Web Framework
+streamlit
+
+# Graph Processing
+networkx
+
+# Visualization
+pyvis
+
+# Vietnamese NLP
+underthesea
+
+# Data Processing
+pandas
+numpy
+
+# Scientific Computing
+scipy
+
+# Machine Learning (for future features)
+scikit-learn
+gensim
