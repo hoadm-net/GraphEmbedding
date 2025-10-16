@@ -180,7 +180,7 @@ Thay vì dự đoán trên toàn bộ từ điển, chỉ phân biệt giữa:
 
 ### **Hàm mục tiêu:**
 $$
-\log \sigma(\mathbf{u}_c^T \mathbf{v}_w) + \sum_{i=1}^{k} \mathbb{E}_{w_i \sim P_n(w)} [\log \sigma(-\mathbf{u}_{w_i}^T \mathbf{v}_w)]
+\log \sigma(\mathbf{u}_c^T \mathbf{v}_w) + \sum_{i=1}^{k} \mathbb{E}_{w\_i \sim P_n(w)} [\log \sigma(-\mathbf{u}_{w\_i}^T \mathbf{v}_w)]
 $$
 
 Trong đó:
