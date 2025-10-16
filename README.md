@@ -44,11 +44,22 @@ streamlit run text2graph.py
 
 ---
 
-### 🚧 2. Random Walk
+### ✅ 2. Random Walk (`random_walk.py`)
 
-**Status**: 🚧 Đang phát triển
+**Status**: ✅ Hoàn thành
 
-*Placeholder: Thuật toán Random Walk để khám phá cấu trúc đồ thị và tạo training sequences cho DeepWalk*
+- Random Walk algorithm với RandomWalker class
+- Interactive visualization với node coloring
+- Walk modes: Single demo và Selected nodes
+- Sequence generation và display
+- Integration với text2graph module
+
+👉 [Chi tiết Random Walk](README_RANDOM_WALK.md)
+
+**Sử dụng:**
+```bash
+streamlit run random_walk.py
+```
 
 ---
 
@@ -90,10 +101,12 @@ streamlit run text2graph.py
 GraphEmbedding/
 ├── README.md                    # Tổng quan project
 ├── README_TEXT2GRAPH.md         # Chi tiết Text to Graph
+├── README_RANDOM_WALK.md        # Chi tiết Random Walk
 ├── text2graph.py               # ✅ Streamlit app: Text → Graph
-├── random_walk.py              # 🚧 Random Walk (coming soon)
+├── random_walk.py              # ✅ Streamlit app: Random Walk
 ├── deepwalk.py                 # 🚧 DeepWalk (coming soon)
 ├── graph_classification.py     # 🚧 Classification (coming soon)
+├── requirements.txt            # Python dependencies
 ├── .gitignore                 
 └── data/                      # Thư mục văn bản đầu vào
     ├── 1.txt
