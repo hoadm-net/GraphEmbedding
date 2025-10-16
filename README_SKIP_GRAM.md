@@ -83,14 +83,12 @@ Lớp đầu vào      Lớp ẩn        Lớp đầu ra
 **Đầu vào**: Vector one-hot $\mathbf{x}_w$ cho từ trung tâm $w$
 
 **Lớp ẩn**: Vector embedding
-$$
-\mathbf{h} = \mathbf{W}^T \mathbf{x}_w = \mathbf{v}_w
-$$
+
+$$\mathbf{h} = \mathbf{W}^T \mathbf{x}_w = \mathbf{v}_w$$
 
 **Lớp đầu ra**: Phân phối xác suất
-$$
-P(c | w) = \frac{\exp(\mathbf{u}_c^T \mathbf{v}_w)}{\sum_{j=1}^{|V|} \exp(\mathbf{u}_j^T \mathbf{v}_w)}
-$$
+
+$$P(c | w) = \frac{\exp(\mathbf{u}_c^T \mathbf{v}_w)}{\sum_{j=1}^{|V|} \exp(\mathbf{u}_j^T \mathbf{v}_w)}$$
 
 Trong đó:
 - $\mathbf{v}_w$: **input embedding** của từ $w$
