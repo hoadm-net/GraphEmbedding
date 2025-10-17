@@ -146,26 +146,31 @@ $$
 ### 2. Random Walk with Restart
 
 Với xác suất $c$ quay về node khởi đầu:
+
 $$
-P(X_{t+1} = v_j | X_t = v_i) = \begin{cases} 
-c \cdot \mathbf{1}_{j=start} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\
-c \cdot \mathbf{1}_{j=start} & \text{ngược lại}
+P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} 
+c \cdot \mathbf{1}_{j=\text{start}} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\
+c \cdot \mathbf{1}_{j=\text{start}} & \text{ngược lại}
 \end{cases}
 $$
+
+Trong đó $\mathbf{1}_{j=\text{start}}$ là hàm indicator (bằng 1 nếu $j$ là node khởi đầu).
 
 ### 3. Biased Random Walk (Node2Vec style)
 
 Với tham số $p$ (return) và $q$ (in-out):
+
 $$
-P(X_{t+1} = v_j | X_{t-1} = v_{t-1}, X_t = v_i) = \frac{\alpha_{pq}(v_{t-1}, v_j) \cdot w_{ij}}{Z}
+P(X_{t+1} = v_j \mid X_{t-1} = v_{t-1}, X_t = v_i) = \frac{\alpha_{pq}(v_{t-1}, v_j) \cdot w_{ij}}{Z}
 $$
 
 Trong đó:
+
 $$
 \alpha_{pq}(t, x) = \begin{cases} 
-\frac{1}{p} & \text{nếu } d_{tx} = 0 \text{ (return to } t \text{)} \\
-1 & \text{nếu } d_{tx} = 1 \text{ (same distance)} \\
-\frac{1}{q} & \text{nếu } d_{tx} = 2 \text{ (move away)}
+\frac{1}{p} & \text{nếu } d(t,x) = 0 \text{ (quay lại } t \text{)} \\
+1 & \text{nếu } d(t,x) = 1 \text{ (cùng khoảng cách)} \\
+\frac{1}{q} & \text{nếu } d(t,x) = 2 \text{ (đi xa hơn)}
 \end{cases}
 $$
 
