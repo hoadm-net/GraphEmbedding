@@ -24,9 +24,7 @@ Có hai phương pháp để tính trọng số cho các cạnh:
 #### **a) Frequency (Tần suất)**
 Số lần hai từ xuất hiện gần nhau trong cửa sổ ngữ cảnh:
 
-$$
-w_{ij} = \text{count}(w_i, w_j)
-$$
+$$ w_{ij} = \text{count}(w_i, w_j) $$
 
 #### **b) PMI (Pointwise Mutual Information)**
 Đo lường mức độ liên kết ngữ nghĩa giữa hai từ:
@@ -46,9 +44,7 @@ Mỗi cặp từ trong cùng cửa sổ được ghi nhận là một lần đ�
 
 PMI đo lường mức độ liên kết ngữ nghĩa giữa hai từ:
 
-$$
-\text{PMI}(w_1, w_2) = \log_2 \frac{P(w_1, w_2)}{P(w_1) \cdot P(w_2)}
-$$
+$$ \text{PMI}(w_1, w_2) = \log_2 \frac{P(w_1, w_2)}{P(w_1) \cdot P(w_2)} $$
 
 Trong đó:
 - $P(w_1, w_2)$: Xác suất đồng xuất hiện của $w_1$ và $w_2$
@@ -58,13 +54,9 @@ PMI cao → Hai từ có xu hướng xuất hiện cùng nhau nhiều hơn ngẫ
 
 **Công thức tính xác suất:**
 
-$$
-P(w_1, w_2) = \frac{\text{count}(w_1, w_2)}{N}
-$$
+$$ P(w_1, w_2) = \frac{\text{count}(w_1, w_2)}{N} $$
 
-$$
-P(w_i) = \frac{\text{count}(w_i)}{N}
-$$
+$$ P(w_i) = \frac{\text{count}(w_i)}{N} $$
 
 Với $N$ là tổng số từ trong văn bản.
 

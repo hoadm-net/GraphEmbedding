@@ -21,9 +21,7 @@ Cho một **từ trung tâm**, tối đa hóa xác suất dự đoán các **t�
 
 ### **Hàm mục tiêu toán học:**
 
-$$
-\text{maximize} \quad \mathcal{L} = \sum_{w \in \text{corpus}} \sum_{c \in C(w)} \log P(c | w)
-$$
+$$ \text{maximize} \quad \mathcal{L} = \sum_{w \in \text{corpus}} \sum_{c \in C(w)} \log P(c \mid w) $$
 
 Trong đó:
 - $w$: từ trung tâm  
@@ -89,11 +87,11 @@ Lớp đầu vào      Lớp ẩn        Lớp đầu ra
 
 **Lớp ẩn**: Vector embedding
 
-$$\mathbf{h} = \mathbf{W}^T \mathbf{x}_w = \mathbf{v}_w$$
+$$ \mathbf{h} = \mathbf{W}^T \mathbf{x}_w = \mathbf{v}_w $$
 
 **Lớp đầu ra**: Phân phối xác suất
 
-$$P(c | w) = \frac{\exp(\mathbf{u}_c^T \mathbf{v}_w)}{\sum_{j=1}^{|V|} \exp(\mathbf{u}_j^T \mathbf{v}_w)}$$
+$$ P(c \mid w) = \frac{\exp(\mathbf{u}_c^T \mathbf{v}_w)}{\sum_{j=1}^{|V|} \exp(\mathbf{u}_j^T \mathbf{v}_w)} $$
 
 Trong đó:
 - $\mathbf{v}_w$: **input embedding** của từ $w$
@@ -184,9 +182,7 @@ Thay vì dự đoán trên toàn bộ từ điển, chỉ phân biệt giữa:
 - $k$ **ví dụ âm** (các từ ngẫu nhiên)
 
 ### **Hàm mục tiêu:**
-$$
-\log \sigma(\mathbf{u}_c^T \mathbf{v}_w) + \sum_{i=1}^{k} \mathbb{E}_{w\_i \sim P_n(w)} [\log \sigma(-\mathbf{u}_{w\_i}^T \mathbf{v}_w)]
-$$
+$$ \log \sigma(\mathbf{u}_c^T \mathbf{v}_w) + \sum_{i=1}^{k} \mathbb{E}_{w\_i \sim P_n(w)} [\log \sigma(-\mathbf{u}_{w\_i}^T \mathbf{v}_w)] $$
 
 Trong đó:
 - $\sigma(x) = \frac{1}{1 + e^{-x}}$: hàm sigmoid

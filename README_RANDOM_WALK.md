@@ -22,18 +22,11 @@ Cho đồ thị vô hướng $G = (V, E)$ với:
 
 ### 2. Ma trận kề cận (Adjacency Matrix)
 
-$$
-A_{ij} = \begin{cases} 
-1 & \text{nếu } (v_i, v_j) \in E \\
-0 & \text{ngược lại}
-\end{cases}
-$$
+$$ A_{ij} = \begin{cases} 1 & \text{nếu } (v_i, v_j) \in E \\ 0 & \text{ngược lại} \end{cases} $$
 
 ### 3. Bậc của đỉnh (Degree)
 
-$$
-d(v_i) = \sum_{j=1}^{n} A_{ij}
-$$
+$$ d(v_i) = \sum_{j=1}^{n} A_{ij} $$
 
 ## 🎯 Random Walk Algorithm
 
@@ -41,18 +34,11 @@ $$
 
 **Xác suất chuyển đổi (Transition Probability)**:
 
-$$
-P(X_{t+1} = v_j | X_t = v_i) = \begin{cases} 
-\frac{1}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\
-0 & \text{ngược lại}
-\end{cases}
-$$
+$$ P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} \frac{1}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\ 0 & \text{ngược lại} \end{cases} $$
 
 **Ma trận chuyển đổi (Transition Matrix)**:
 
-$$
-P_{ij} = \frac{A_{ij}}{d(v_i)}
-$$
+$$ P_{ij} = \frac{A_{ij}}{d(v_i)} $$
 
 Trong đó:
 - $X_t$: Node tại thời điểm $t$
@@ -63,9 +49,7 @@ Trong đó:
 
 Với đồ thị có trọng số $w_{ij}$ trên cạnh $(v_i, v_j)$:
 
-$$
-P(X_{t+1} = v_j | X_t = v_i) = \frac{w_{ij}}{\sum_{k \in N(v_i)} w_{ik}}
-$$
+$$ P(X_{t+1} = v_j \mid X_t = v_i) = \frac{w_{ij}}{\sum_{k \in N(v_i)} w_{ik}} $$
 
 Trong đó $N(v_i)$ là tập neighbors của $v_i$.
 
@@ -92,67 +76,45 @@ def random_walk(graph, start_node, walk_length):
 
 Random Walk là **Markov Chain** với tính chất:
 
-$$
-P(X_{t+1} = v_j | X_0, X_1, ..., X_t) = P(X_{t+1} = v_j | X_t)
-$$
+$$ P(X_{t+1} = v_j \mid X_0, X_1, \ldots, X_t) = P(X_{t+1} = v_j \mid X_t) $$
 
 **Stationary Distribution**:
 
 Phân phối dừng $\pi$ thỏa mãn:
-$$
-\pi^T P = \pi^T
-$$
+$$ \pi^T P = \pi^T $$
 
 Với simple random walk trên đồ thị liên thông:
-$$
-\pi_i = \frac{d(v_i)}{2m}
-$$
+$$ \pi_i = \frac{d(v_i)}{2m} $$
 
 ## 🎲 Tính chất thống kê
 
 ### 1. Expected Return Time
 
 Thời gian kỳ vọng quay lại node $i$:
-$$
-E[T_i] = \frac{1}{\pi_i} = \frac{2m}{d(v_i)}
-$$
+$$ E[T_i] = \frac{1}{\pi_i} = \frac{2m}{d(v_i)} $$
 
 ### 2. Hitting Time
 
 Thời gian kỳ vọng từ node $i$ đến node $j$ lần đầu:
-$$
-H_{ij} = E[T_j | X_0 = i]
-$$
+$$ H_{ij} = E[T_j \mid X_0 = i] $$
 
 ### 3. Mixing Time
 
 Thời gian để phân phối hội tụ về stationary distribution:
-$$
-T_{mix}(\epsilon) = \min\{t : \max_i ||P^t(i, \cdot) - \pi||_{TV} \leq \epsilon\}
-$$
+$$ T_{mix}(\epsilon) = \min\{t : \max_i \|P^t(i, \cdot) - \pi\|_{TV} \leq \epsilon\} $$
 
 ## 🔄 Biến thể của Random Walk
 
 ### 1. Lazy Random Walk
 
 Với xác suất $\alpha$ ở lại node hiện tại:
-$$
-P'_{ij} = \begin{cases} 
-\alpha + (1-\alpha) \frac{1}{d(v_i)} & \text{nếu } i = j \\
-(1-\alpha) \frac{A_{ij}}{d(v_i)} & \text{nếu } i \neq j
-\end{cases}
-$$
+$$ P'_{ij} = \begin{cases} \alpha + (1-\alpha) \frac{1}{d(v_i)} & \text{nếu } i = j \\ (1-\alpha) \frac{A_{ij}}{d(v_i)} & \text{nếu } i \neq j \end{cases} $$
 
 ### 2. Random Walk with Restart
 
 Với xác suất $c$ quay về node khởi đầu:
 
-$$
-P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} 
-c \cdot \mathbf{1}_{j=\text{start}} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\
-c \cdot \mathbf{1}_{j=\text{start}} & \text{ngược lại}
-\end{cases}
-$$
+$$ P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} c \cdot \mathbf{1}_{j=\text{start}} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\ c \cdot \mathbf{1}_{j=\text{start}} & \text{ngược lại} \end{cases} $$
 
 Trong đó $\mathbf{1}_{j=\text{start}}$ là hàm indicator (bằng 1 nếu $j$ là node khởi đầu).
 
@@ -160,28 +122,18 @@ Trong đó $\mathbf{1}_{j=\text{start}}$ là hàm indicator (bằng 1 nếu $j$ 
 
 Với tham số $p$ (return) và $q$ (in-out):
 
-$$
-P(X_{t+1} = v_j \mid X_{t-1} = v_{t-1}, X_t = v_i) = \frac{\alpha_{pq}(v_{t-1}, v_j) \cdot w_{ij}}{Z}
-$$
+$$ P(X_{t+1} = v_j \mid X_{t-1} = v_{t-1}, X_t = v_i) = \frac{\alpha_{pq}(v_{t-1}, v_j) \cdot w_{ij}}{Z} $$
 
 Trong đó:
 
-$$
-\alpha_{pq}(t, x) = \begin{cases} 
-\frac{1}{p} & \text{nếu } d(t,x) = 0 \text{ (quay lại } t \text{)} \\
-1 & \text{nếu } d(t,x) = 1 \text{ (cùng khoảng cách)} \\
-\frac{1}{q} & \text{nếu } d(t,x) = 2 \text{ (đi xa hơn)}
-\end{cases}
-$$
+$$ \alpha_{pq}(t, x) = \begin{cases} \frac{1}{p} & \text{nếu } d(t,x) = 0 \text{ (quay lại } t \text{)} \\ 1 & \text{nếu } d(t,x) = 1 \text{ (cùng khoảng cách)} \\ \frac{1}{q} & \text{nếu } d(t,x) = 2 \text{ (đi xa hơn)} \end{cases} $$
 
 ## 🎮 Ứng dụng trong Streamlit App
 
 ### 1. Node Sequence Generation
 
 Random walk tạo ra sequences của nodes:
-$$
-S = \{s_1, s_2, ..., s_L\}
-$$
+$$ S = \{s_1, s_2, \ldots, s_L\} $$
 
 Ví dụ: `["học", "sinh", "đi", "học", "bài"]`
 
