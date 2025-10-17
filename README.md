@@ -23,87 +23,86 @@ Văn bản → Đồ thị từ vựng → Graph Embedding → Phân loại/Phâ
 - **Machine Learning**: Áp dụng các thuật toán ML truyền thống trên graph embeddings
 - **Giáo dục**: Minh họa các khái niệm cơ bản về Graph Neural Networks
 
-## ✨ Tính năng
+## ✨ Các modules chính
 
-### ✅ 1. Text to Graph Visualization (`text2graph.py`)
+### 1. Text to Graph Visualization (`text2graph.py`)
 
-**Status**: ✅ Hoàn thành
+Chuyển đổi văn bản tiếng Việt thành đồ thị đồng xuất hiện (co-occurrence graph) và trực quan hóa tương tác.
 
-- Tokenization tiếng Việt với `underthesea`
-- Xây dựng co-occurrence graph với sliding window
-- Tính trọng số cạnh: Frequency và PMI
+**Khái niệm:**
+- **Tokenization** tiếng Việt với `underthesea`
+- **Sliding window** để xây dựng co-occurrence matrix
+- Trọng số cạnh: **Frequency** (tần suất) và **PMI** (Pointwise Mutual Information)
 - Trực quan hóa tương tác với Pyvis
-- Thống kê và phân tích đồ thị
+- Thống kê và phân tích cấu trúc đồ thị
 
 👉 [Chi tiết Text2Graph](README_TEXT2GRAPH.md)
 
-**Sử dụng:**
+**Chạy ứng dụng:**
 ```bash
 streamlit run text2graph.py
 ```
 
 ---
 
-### ✅ 2. Random Walk (`random_walk.py`)
+### 2. Random Walk (`random_walk.py`)
 
-**Status**: ✅ Hoàn thành
+Thuật toán duyệt đồ thị ngẫu nhiên để tạo sequences, nền tảng cho Graph Embedding.
 
-- Random Walk algorithm với RandomWalker class
-- Interactive visualization với node coloring
-- Walk modes: Single demo và Selected nodes
-- Sequence generation và display
-- Integration với text2graph module
+**Khái niệm:**
+- **Random Walk algorithm**: Di chuyển ngẫu nhiên trên đồ thị
+- **Markov Chain**: Chuỗi Markov với transition probabilities
+- Visualization tương tác với node coloring
+- Sequence generation: Single demo và selected nodes
+- Tích hợp với text2graph module
 
 👉 [Chi tiết Random Walk](README_RANDOM_WALK.md)
 
-**Sử dụng:**
+**Chạy ứng dụng:**
 ```bash
 streamlit run random_walk.py
 ```
 
 ---
 
-### ✅ 3. DeepWalk (`deepwalk_notebook.ipynb`)
+### 3. DeepWalk - Graph Embedding (`deepwalk_notebook.ipynb`)
 
-**Status**: ✅ Hoàn thành
+Học vector representations cho nodes sử dụng Random Walks và Skip-gram.
 
-- Pipeline hoàn chỉnh: Text → Graph → Random Walks → Skip-gram Training
-- Word2Vec implementation với gensim
-- Node embeddings analysis và similarity
-- t-SNE visualization
-- Clustering với K-means
-- Export embeddings và model
+**Khái niệm:**
+- **Pipeline**: Text → Graph → Random Walks → Skip-gram Training
+- **Skip-gram model**: Học embeddings từ sequences (Word2Vec)
+- **Node embeddings**: Vector representation trong không gian liên tục
+- Phân tích similarity và clustering
+- Visualization với t-SNE và K-means
 
 👉 [Chi tiết Skip-gram](README_SKIP_GRAM.md)
 
-**Sử dụng:**
+**Chạy notebook:**
 ```bash
-# Mở Jupyter Notebook
 jupyter notebook deepwalk_notebook.ipynb
 ```
 
 ---
 
-### ✅ 4. Text Classification (`text_classification_notebook.ipynb`)
+### 4. Text Classification (`text_classification_notebook.ipynb`)
 
-**Status**: ✅ Hoàn thành
+Phân loại văn bản sử dụng Graph Embeddings và KNN classifier.
 
-- **Document-level approach**: Mỗi document → 1 graph → 1 vector
-- **Pipeline**: Doc2Graph → Embeddings → Mean Pooling → KNN
-- **Dataset**: 10 training files (5 núi, 5 biển) + 1 test file
-- **Visualization**: t-SNE cho 11 documents với nearest neighbors
-- **Educational**: Step-by-step annotations cho seminar
+**Khái niệm:**
+- **Document-level approach**: Document → Graph → Vector representation
+- **Mean pooling**: Aggregate node embeddings thành document vector
+- **KNN classification**: Phân loại dựa trên cosine similarity
+- **t-SNE visualization**: Trực quan hóa trong không gian 2D
+- **Nearest neighbors analysis**: Giải thích prediction
 
-**Features:**
-- Mean pooling để tạo document vectors từ node embeddings
-- KNN classification (k=3) với cosine similarity
-- Interactive visualization: training + test documents
-- Nearest neighbors analysis với distance metrics
-- Prediction confidence scores
+**Pipeline:**
+```
+Text → Graph → Node Embeddings → Mean Pooling → Document Vector → KNN
+```
 
-**Sử dụng:**
+**Chạy notebook:**
 ```bash
-# Mở Jupyter Notebook
 jupyter notebook text_classification_notebook.ipynb
 ```
 
@@ -146,33 +145,17 @@ GraphEmbedding/
 ├── README_TEXT2GRAPH.md               # Chi tiết Text to Graph
 ├── README_RANDOM_WALK.md              # Chi tiết Random Walk  
 ├── README_SKIP_GRAM.md                # Chi tiết Skip-gram
-├── text2graph.py                      # ✅ Streamlit: Text → Graph
-├── random_walk.py                     # ✅ Streamlit: Random Walk
-├── deepwalk_notebook.ipynb            # ✅ Notebook: DeepWalk pipeline
-├── text_classification_notebook.ipynb # ✅ Notebook: Text Classification
+├── text2graph.py                      # Streamlit: Text → Graph
+├── random_walk.py                     # Streamlit: Random Walk
+├── deepwalk_notebook.ipynb            # Notebook: DeepWalk pipeline
+├── text_classification_notebook.ipynb # Notebook: Text Classification
 ├── requirements.txt                   # Python dependencies
 ├── .gitignore                 
-└── data/                             # Văn bản đầu vào
-    ├── 1.txt - 10.txt                # Training data (núi & biển)
-    └── test.txt                      # Test data
+└── data/                              # Văn bản đầu vào
+    ├── 1.txt - 10.txt                 # Training data (núi & biển)
+    └── test.txt                       # Test data
 ```
 
-## 🎓 Use Cases
-
-### 1. **Seminar/Teaching**
-- Interactive demos với Streamlit apps
-- Step-by-step notebooks với detailed annotations
-- Visual explanations của graph concepts
-
-### 2. **Research**
-- Baseline implementations cho graph embedding methods
-- Easy experimentation với different parameters
-- Export results cho further analysis
-
-### 3. **Vietnamese NLP**
-- Co-occurrence graphs cho Vietnamese text
-- Integration với underthesea tokenizer
-- Domain-specific vocabulary analysis
 
 ## 📚 Tài liệu tham khảo
 
@@ -187,22 +170,3 @@ GraphEmbedding/
 - [Underthesea](https://github.com/undertheseanlp/underthesea) - Vietnamese NLP
 - [Pyvis](https://pyvis.readthedocs.io/) - Interactive graph visualization
 - [scikit-learn](https://scikit-learn.org/) - Machine learning
-
-## 🤝 Contributing
-
-Contributions are welcome! Vui lòng tạo issue hoặc pull request.
-
-## 📝 License
-
-MIT License - xem file LICENSE để biết thêm chi tiết.
-
-## 👨‍💻 Author
-
-**Hoa Dinh**
-- GitHub: [@hoadm-net](https://github.com/hoadm-net)
-- Repository: [GraphEmbedding](https://github.com/hoadm-net/GraphEmbedding)
-
----
-
-⭐ **Star this repo** nếu bạn thấy hữu ích cho việc học và nghiên cứu!
-

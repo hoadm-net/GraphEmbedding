@@ -1,14 +1,19 @@
-# 🎯 Thuật Toán Skip-gram
+# 🎯 Skip-gram - Học Word Embeddings
 
-Tài liệu chi tiết về thuật toán Skip-gram - nền tảng của Word2Vec và DeepWalk.
+Thuật toán Skip-gram là nền tảng của Word2Vec và DeepWalk để học vector representations.
 
 ## 📋 Tổng quan
 
-Skip-gram là thuật toán **mạng neural** để học **word embeddings** (hoặc node embeddings trong DeepWalk). Ý tưởng cốt lõi: **dự đoán các từ ngữ cảnh từ từ trung tâm**.
+Skip-gram là thuật toán **neural network** để học **word embeddings** - biểu diễn từ trong không gian vector liên tục. Ý tưởng cốt lõi: **dự đoán các từ ngữ cảnh từ từ trung tâm**.
 
-### **Khác biệt với CBOW:**
-- **Skip-gram**: Từ trung tâm → Dự đoán các từ ngữ cảnh
-- **CBOW**: Các từ ngữ cảnh → Dự đoán từ trung tâm
+### **So sánh với CBOW:**
+- **Skip-gram**: Từ trung tâm → Dự đoán các từ ngữ cảnh (1 → nhiều)
+- **CBOW** (Continuous Bag of Words): Các từ ngữ cảnh → Dự đoán từ trung tâm (nhiều → 1)
+
+Skip-gram hoạt động tốt hơn với:
+- Từ vựng lớn
+- Từ hiếm (rare words)
+- Smaller datasets
 
 ## 🎯 Mục tiêu của Skip-gram
 

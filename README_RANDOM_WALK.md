@@ -1,15 +1,15 @@
-# 🚶 Random Walk Visualization
+# 🚶 Random Walk - Duyệt đồ thị ngẫu nhiên
 
-Tài liệu về thuật toán Random Walk và trực quan hóa sequences trên đồ thị từ vựng.
+Thuật toán Random Walk và ứng dụng trong Graph Embedding.
 
 ## 📋 Tổng quan
 
-Random Walk là thuật toán duyệt đồ thị ngẫu nhiên, tạo ra **sequences** (chuỗi) các nodes bằng cách di chuyển ngẫu nhiên từ node này sang node kề cận. Trong project này, chúng ta sử dụng Random Walk để:
+Random Walk là thuật toán duyệt đồ thị ngẫu nhiên, tạo ra **sequences** (chuỗi) các nodes bằng cách di chuyển ngẫu nhiên từ node này sang node kề cận. Đây là nền tảng quan trọng cho:
 
-- **Khám phá cấu trúc đồ thị**: Hiểu cách các từ kết nối với nhau
-- **Tạo sequences**: Chuỗi các từ có thể được sử dụng sau này cho Graph Embedding
-- **Trực quan hóa**: Minh họa quá trình duyệt đồ thị một cách interactive
-- **Giáo dục**: Hiểu nguyên lý cơ bản trước khi áp dụng DeepWalk/Node2Vec
+- **Graph Embedding**: Học vector representations cho nodes (DeepWalk, Node2Vec)
+- **Khám phá cấu trúc**: Hiểu cách các từ/nodes kết nối với nhau
+- **Sequence generation**: Tạo chuỗi để huấn luyện Skip-gram model
+- **Phân tích đồ thị**: Nghiên cứu tính chất thống kê của đồ thị
 
 ## 🧮 Định nghĩa toán học
 
