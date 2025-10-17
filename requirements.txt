@@ -17,6 +17,10 @@ numpy
 # Scientific Computing
 scipy
 
-# Machine Learning (for future features)
+# Machine Learning & Embeddings
 scikit-learn
 gensim
+
+# Additional for DeepWalk
+matplotlib
+seaborn
