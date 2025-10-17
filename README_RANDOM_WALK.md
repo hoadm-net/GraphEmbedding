@@ -108,13 +108,24 @@ $$T_{mix}(\epsilon) = \min\{t : \max_i \|P^t(i, \cdot) - \pi\|_{TV} \leq \epsilo
 ### 1. Lazy Random Walk
 
 Với xác suất $\alpha$ ở lại node hiện tại:
-$$P'_{ij} = \begin{cases} \alpha + (1-\alpha) \frac{1}{d(v_i)} & \text{nếu } i = j \\ (1-\alpha) \frac{A_{ij}}{d(v_i)} & \text{nếu } i \neq j \end{cases}$$
+
+$$
+P'_{ij} = \begin{cases} 
+\alpha + (1-\alpha) \frac{1}{d(v_i)} & \text{nếu } i = j \\
+(1-\alpha) \frac{A_{ij}}{d(v_i)} & \text{nếu } i \neq j 
+\end{cases}
+$$
 
 ### 2. Random Walk with Restart
 
 Với xác suất $c$ quay về node khởi đầu:
 
-$$P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} c \cdot \mathbf{1}_{j=\text{start}} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\ c \cdot \mathbf{1}_{j=\text{start}} & \text{ngược lại} \end{cases}$$
+$$
+P(X_{t+1} = v_j \mid X_t = v_i) = \begin{cases} 
+c \cdot \mathbf{1}_{j=\text{start}} + (1-c) \frac{A_{ij}}{d(v_i)} & \text{nếu } (v_i, v_j) \in E \\
+c \cdot \mathbf{1}_{j=\text{start}} & \text{ngược lại} 
+\end{cases}
+$$
 
 Trong đó $\mathbf{1}_{j=\text{start}}$ là hàm indicator (bằng 1 nếu $j$ là node khởi đầu).
 
@@ -126,7 +137,13 @@ $$P(X_{t+1} = v_j \mid X_{t-1} = v_{t-1}, X_t = v_i) = \frac{\alpha_{pq}(v_{t-1}
 
 Trong đó:
 
-$$\alpha_{pq}(t, x) = \begin{cases} \frac{1}{p} & \text{nếu } d(t,x) = 0 \text{ (quay lại } t \text{)} \\ 1 & \text{nếu } d(t,x) = 1 \text{ (cùng khoảng cách)} \\ \frac{1}{q} & \text{nếu } d(t,x) = 2 \text{ (đi xa hơn)} \end{cases}$$
+$$
+\alpha_{pq}(t, x) = \begin{cases} 
+\frac{1}{p} & \text{nếu } d(t,x) = 0 \text{ (quay lại } t \text{)} \\
+1 & \text{nếu } d(t,x) = 1 \text{ (cùng khoảng cách)} \\
+\frac{1}{q} & \text{nếu } d(t,x) = 2 \text{ (đi xa hơn)}
+\end{cases}
+$$
 
 ## 🎮 Ứng dụng trong Streamlit App
 
