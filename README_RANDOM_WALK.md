@@ -91,7 +91,7 @@ $$ \pi_i = \frac{d(v_i)}{2m} $$
 ### 1. Expected Return Time
 
 Thời gian kỳ vọng quay lại node $i$:
-$$ E[T_i] = \frac{1}{\pi_i} = \frac{2m}{d(v_i)} $$
+$$E[T_i] = \frac{1}{\pi_i} = \frac{2m}{d(v_i)}$$
 
 ### 2. Hitting Time
 
