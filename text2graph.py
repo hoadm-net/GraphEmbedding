@@ -103,6 +103,36 @@ class TextGraphBuilder:
                     edges_added += 1
         
         return G
+    
+    def save_graph_to_csv(self, G, nodes_file="nodes.csv", edges_file="edges.csv"):
+        """Lưu đồ thị vào file CSV"""
+        # Tạo DataFrame cho nodes
+        nodes_data = []
+        for i, node in enumerate(G.nodes()):
+            nodes_data.append({
+                'id': i,
+                'label': node
+            })
+        
+        nodes_df = pd.DataFrame(nodes_data)
+        
+        # Tạo DataFrame cho edges
+        edges_data = []
+        for edge in G.edges():
+            weight = G[edge[0]][edge[1]].get('weight', 1)
+            edges_data.append({
+                'source': edge[0],
+                'target': edge[1], 
+                'weight': weight
+            })
+        
+        edges_df = pd.DataFrame(edges_data)
+        
+        # Lưu vào file CSV
+        nodes_df.to_csv(nodes_file, index=False, encoding='utf-8')
+        edges_df.to_csv(edges_file, index=False, encoding='utf-8')
+        
+        return nodes_df, edges_df
 
 def load_data_files():
     """Load tất cả các file txt từ thư mục data"""
@@ -301,6 +331,54 @@ def main():
     st.header("📊 Đồ thị từ vựng")
     if len(G.nodes()) > 0:
         visualize_graph(G)
+        
+        # Nút xuất dữ liệu
+        col_export1, col_export2 = st.columns(2)
+        with col_export1:
+            if st.button("💾 Xuất dữ liệu CSV", help="Lưu đồ thị vào files nodes.csv và edges.csv"):
+                with st.spinner("Đang xuất dữ liệu..."):
+                    try:
+                        nodes_df, edges_df = graph_builder.save_graph_to_csv(G)
+                        st.success("✅ Đã xuất dữ liệu thành công!")
+                        
+                        # Hiển thị preview dữ liệu
+                        st.subheader("📄 Preview dữ liệu đã xuất")
+                        
+                        col_preview1, col_preview2 = st.columns(2)
+                        with col_preview1:
+                            st.write("**nodes.csv** (5 dòng đầu)")
+                            st.dataframe(nodes_df.head(), use_container_width=True)
+                        
+                        with col_preview2:
+                            st.write("**edges.csv** (5 dòng đầu)")
+                            st.dataframe(edges_df.head(), use_container_width=True)
+                        
+                        # Thông tin file đã tạo
+                        st.info(f"📁 Đã tạo 2 files: `nodes.csv` ({len(nodes_df)} nodes) và `edges.csv` ({len(edges_df)} edges)")
+                        
+                    except Exception as e:
+                        st.error(f"❌ Lỗi khi xuất dữ liệu: {str(e)}")
+        
+        with col_export2:
+            # Download buttons cho CSV files nếu chúng tồn tại
+            if os.path.exists("nodes.csv"):
+                with open("nodes.csv", "r", encoding="utf-8") as f:
+                    st.download_button(
+                        label="⬇️ Tải nodes.csv",
+                        data=f.read(),
+                        file_name="nodes.csv",
+                        mime="text/csv"
+                    )
+            
+            if os.path.exists("edges.csv"):
+                with open("edges.csv", "r", encoding="utf-8") as f:
+                    st.download_button(
+                        label="⬇️ Tải edges.csv", 
+                        data=f.read(),
+                        file_name="edges.csv",
+                        mime="text/csv"
+                    )
+                
         # Hiển thị thông tin đồ thị
         col1, col2 = st.columns(2)
         with col1:
