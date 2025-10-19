@@ -120,10 +120,12 @@ class TextGraphBuilder:
         edges_data = []
         for edge in G.edges():
             weight = G[edge[0]][edge[1]].get('weight', 1)
+            # Tạo edge label từ weight (có thể tùy chỉnh format)
+            edge_label = f"weight_{weight}"
             edges_data.append({
                 'source': edge[0],
                 'target': edge[1], 
-                'weight': weight
+                'edge.label': edge_label
             })
         
         edges_df = pd.DataFrame(edges_data)
